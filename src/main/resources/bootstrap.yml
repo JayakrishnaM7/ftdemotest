@@ -1,0 +1,70 @@
+management: 
+  endpoint: 
+    metrics: 
+      enabled: true
+    prometheus: 
+      enabled: true
+  endpoints: 
+    web: 
+      exposure: 
+        include: "*"
+  metrics: 
+    export: 
+      prometheus: 
+        enabled: true
+spring: 
+  application: 
+    name: fundtransfer
+  cloud: 
+    config: 
+      failFast: false
+      retry: 
+        maxAttempts: 20
+      uri: ${CONFIG_SERVER_URI}
+  profiles: 
+    active: ${PROFILE:dev}
+  sleuth: 
+    sampler: 
+      percentage: 1
+  api: 
+    corporatecurrentaccount: 
+      context-path: /CorporateCurrentAccount/Initiate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: corporatecurrentaccount868537-jolt.json
+    financialgateway: 
+      context-path: /FinancialGateway/Initiate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: financialgateway464071-jolt.json
+    fraudevalution: 
+      context-path: /FraudEvaluation/Evaluate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: fraudevalution439765-jolt.json
+    partyrefdatadirectory: 
+      context-path: /PartyReferenceDataDirectory/{partyreferencedatadirectoryId}/Retrieve
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: partyrefdatadirectory232957-jolt.json
+    paymentexecution: 
+      context-path: /PaymentExecution/Initiate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: paymentexecution861306-jolt.json
+    paymentinitiation: 
+      context-path: /PaymentInitiation/Initiate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: paymentinitiation746637-jolt.json
+    paymentorder: 
+      context-path: /PaymentOrder/Initiate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: paymentorder304951-jolt.json
+    paymentrailoperations: 
+      context-path: /PaymentRailOperations/Initiate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: paymentrailoperations748920-jolt.json
+    regulatorycompliance: 
+      context-path: /RegulatoryCompliance/Evaluate
+      hosturl: v1/bian-3/core/payment/debitor/10.0.0/
+      jolt-filename: regulatorycompliance202962-jolt.json
+  datasource: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${mysql_pwd}
+    url: jdbc:mysql://${mysql_url}:3306/camunda
+    username: ${mysql_user}
